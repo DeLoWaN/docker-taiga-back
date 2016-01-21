@@ -2,7 +2,7 @@
 
 [Taiga](https://taiga.io/) is a project management platform for startups and agile developers & designers who want a simple, beautiful tool that makes work truly enjoyable.
 
-This Docker image can be used for running the Taiga backend. It works together with the [kaluumkalac/taiga-front-dist](https://registry.hub.docker.com/u/htdvisser/taiga-front-dist/) image.
+This Docker image can be used for running the Taiga backend. It works together with the [kalumkalac/taiga-front-dist](https://registry.hub.docker.com/u/kalumkalac/taiga-front-dist/) image.
 
 This image is based on the work of [htdvisser](https://github.com/htdvisser/taiga-docker)
 
@@ -11,7 +11,7 @@ This image is based on the work of [htdvisser](https://github.com/htdvisser/taig
 A [postgres](https://registry.hub.docker.com/_/postgres/) container should be linked to the taiga-back container. The taiga-back container will use the ``POSTGRES_USER`` and ``POSTGRES_PASSWORD`` environment variables that are supplied to the postgres container.
 
 ```
-docker run --name taiga_back_container_name --link postgres_container_name:postgres htdvisser/taiga-back
+docker run --name taiga_back_container_name --link postgres_container_name:postgres kalumkalac/taiga-back
 ```
 
 ## Docker-compose
@@ -83,9 +83,9 @@ URLs for static files and media files from taiga-back:
 
 Domain configuration:
 
-* ``API_SCHEME`` defaults to ``"http"``. Use ``https`` if ``htdvisser/taiga-front-dist`` is used and SSL enabled.
+* ``API_SCHEME`` defaults to ``"http"``. Use ``https`` if ``kalumkalac/taiga-front-dist`` is used and SSL enabled.
 * ``API_DOMAIN`` defaults to ``"$HOSTNAME"``
-* ``FRONT_SCHEME`` defaults to ``"http"``. Use ``https`` if ``htdvisser/taiga-front-dist`` is used and SSL enabled.
+* ``FRONT_SCHEME`` defaults to ``"http"``. Use ``https`` if ``kalumkalac/taiga-front-dist`` is used and SSL enabled.
 * ``FRONT_DOMAIN`` defaults to ``"$HOSTNAME"``
 
 Email configuration:
