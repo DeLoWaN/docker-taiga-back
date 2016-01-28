@@ -1,11 +1,11 @@
 FROM python:3.4
 
-MAINTAINER Hylke Visser <htdvisser@gmail.com>
+MAINTAINER Damien Gustave <delovan@gmail.com>
 
 # Install dependencies
 RUN \
   apt-get update -qq && \
-  apt-get install -y netcat && \
+  apt-get install -y netcat gettext && \
   rm -rf /var/lib/apt/lists/* && \
   pip install gunicorn
 
@@ -25,7 +25,7 @@ RUN \
   git clone https://github.com/taigaio/taiga-back.git /usr/local/taiga/taiga-back && \
   mkdir /usr/local/taiga/media /usr/local/taiga/static /usr/local/taiga/logs && \
   cd /usr/local/taiga/taiga-back && \
-  git checkout 1.9.1 && \
+  git checkout stable && \
   pip install -r requirements.txt && \
   touch /usr/local/taiga/taiga-back/settings/dockerenv.py && \
   touch /usr/local/taiga/circus.ini && \

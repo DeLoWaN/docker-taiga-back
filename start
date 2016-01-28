@@ -12,6 +12,14 @@ while ! nc -z $POSTGRES_PORT_5432_TCP_ADDR 5432; do
 done
 
 python manage.py migrate --noinput
+if [ ! -e /usr/local/taiga/initial_setup_done ]; then
+  python manage.py loaddata initial_user
+  python manage.py loaddata initial_project_templates
+  python manage.py loaddata initial_role
+  python manage.py compilemessages
+  python manage.py collectstatic --noinput
+  touch /usr/local/taiga/initial_setup_done
+fi
 
 chown -R taiga /usr/local/taiga/media /usr/local/taiga/static /usr/local/taiga/logs
 

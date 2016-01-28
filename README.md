@@ -58,17 +58,6 @@ taigafront:
     - 0.0.0.0:80:80
 ```
 
-## Database Initialization
-
-To initialize the database, use ``docker exec -it taiga-back bash`` and execute the following commands:
-
-```bash
-cd /usr/local/taiga/taiga-back/
-python manage.py loaddata initial_user
-python manage.py loaddata initial_project_templates
-python manage.py loaddata initial_role
-```
-
 ## Environment
 
 * ``SECRET_KEY`` defaults to ``"insecurekey"``, but you might want to change this.
