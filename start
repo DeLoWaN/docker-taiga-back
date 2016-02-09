@@ -18,9 +18,8 @@ if [ ! -e /usr/local/taiga/initial_setup_done ]; then
   python manage.py loaddata initial_role
   python manage.py compilemessages
   python manage.py collectstatic --noinput
+  chown -R taiga:taiga /usr/local/taiga
   touch /usr/local/taiga/initial_setup_done
 fi
-
-chown -R taiga /usr/local/taiga/media /usr/local/taiga/static /usr/local/taiga/logs
 
 /usr/local/bin/circusd /usr/local/taiga/circus.ini
