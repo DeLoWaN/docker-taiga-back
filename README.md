@@ -151,10 +151,32 @@ Up the containers:
 docker-compose up
 ```
 
+Proceed with [a restore](https://github.com/kalumkalac/docker-taiga-back#restore-taiga).
+
 Apply the upgrade steps from [Taiga support page](http://taigaio.github.io/taiga-doc/dist/upgrades.html) in the container using docker exec:
 
 ```
 docker exec -ti taiga_back_container bash
 ```
 
-Proceed with [a restore](https://github.com/kalumkalac/docker-taiga-back#restore-taiga).
+DO NOT APPLY THESE STEPS SINCE THEY ARE ALREADY DONE IN THE BUILDING OF THE IMAGE:
+
+```
+cd ~/taiga-back
+git checkout stable
+workon taiga
+git pull
+```
+
+Proceed directly with these steps:
+
+```
+cd /usr/local/taiga/taiga-back
+pip install --upgrade -r requirements.txt
+```
+
+Restart containers:
+
+```
+docker-compose restart
+```
