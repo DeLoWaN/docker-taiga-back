@@ -91,3 +91,68 @@ Database configuration:
 * ``POSTGRES_DB_NAME``. Use to override database name.
 * ``POSTGRES_USER``. Use to override user specified in linked postgres container.
 * ``POSTGRES_PASSWORD``. Use to override password specified in linked postgres container.
+
+## Backup Taiga
+
+Backup database:
+
+```
+docker exec -ti taiga_db_container su postgres -c "pg_dump -U taiga -c taiga" > taiga_dump.sql
+```
+
+Backup static files:
+
+```
+docker run --rm --volumes-from taiga_data_container alpine tar -c /usr/local/taiga/media /usr/local/taiga/static /usr/local/taiga/logs | gzip > taiga_data.tar.gz
+```
+
+## Restore Taiga
+
+Restore database:
+
+```
+docker exec -ti taiga_db_container su postgres -c "psql -c 'drop database taiga'"
+docker exec -ti taiga_db_container su postgres -c "psql -c 'create database taiga'"
+docker exec -i taiga_db_container su postgres -c "psql -U taiga taiga" < test_dump.sql
+```
+
+Restore static files:
+
+```
+docker run --rm --volumes-from taia_data_container -v /path/to/taiga_data.tar.gz:/taiga_data.tar.gz alpine tar xzf /taiga_data.tar.gz
+```
+
+## Upgrade Taiga
+
+To upgrade Taiga, proceed a backup of Taiga (see above)
+
+Stop and remove Taiga containers:
+
+```
+docker-compose stop
+docker-compose rm
+```
+
+Change your docker-compose.yml file to change the version of the images:
+
+```
+[...]
+taigaback:
+  image: kalumkalac/taiga-back:new_version
+[...]
+taigafront:
+  image: kalumkalac/taiga-front-dist:new_version
+[...]
+```
+
+Up the containers:
+
+```
+docker-compose up
+```
+
+Apply the upgrade steps from [Taiga support page](http://taigaio.github.io/taiga-doc/dist/upgrades.html) in the container using docker exec:
+
+```
+docker exec -ti taiga_back_container bash
+```
