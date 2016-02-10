@@ -124,7 +124,7 @@ docker run --rm --volumes-from taia_data_container -v /path/to/taiga_data.tar.gz
 
 ## Upgrade Taiga
 
-To upgrade Taiga, proceed a backup of Taiga (see above)
+To upgrade Taiga, proceed [a backup](https://github.com/kalumkalac/docker-taiga-back#backup-taiga) of Taiga.
 
 Stop and remove Taiga containers:
 
@@ -156,3 +156,5 @@ Apply the upgrade steps from [Taiga support page](http://taigaio.github.io/taiga
 ```
 docker exec -ti taiga_back_container bash
 ```
+
+Proceed with [a restore](https://github.com/kalumkalac/docker-taiga-back#restore-taiga).
