@@ -11,15 +11,19 @@ while ! nc -z $POSTGRES_PORT_5432_TCP_ADDR 5432; do
   sleep 1
 done
 
+pip install --upgrade -r requirements.txt
 python manage.py migrate --noinput
-if [ ! -e /usr/local/taiga/initial_setup_done ]; then
+python manage.py compilemessages
+python manage.py collectstatic --noinput
+python manage.py migrate taiga_contrib_slack
+if [ ! -e /usr/local/taiga/logs/initial_setup_done ]; then
   python manage.py loaddata initial_user
   python manage.py loaddata initial_project_templates
   python manage.py loaddata initial_role
   python manage.py compilemessages
   python manage.py collectstatic --noinput
   chown -R taiga:taiga /usr/local/taiga
-  touch /usr/local/taiga/initial_setup_done
+  touch /usr/local/taiga/logs/initial_setup_done
 fi
 
 /usr/local/bin/circusd /usr/local/taiga/circus.ini
