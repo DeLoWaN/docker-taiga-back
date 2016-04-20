@@ -25,6 +25,8 @@ PUBLIC_REGISTER_ENABLED=${PUBLIC_REGISTER_ENABLED:-True}
 cat > /usr/local/taiga/taiga-back/settings/dockerenv.py <<EOL
 from .common import *
 
+WEBHOOKS_ENABLED = True
+
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
