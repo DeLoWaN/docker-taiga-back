@@ -73,7 +73,7 @@ cat > /usr/local/taiga/circus.ini <<EOL
 check_delay = 5
 endpoint = tcp://127.0.0.1:5555
 pubsub_endpoint = tcp://127.0.0.1:5556
-statsd = true
+statsd = false
 
 [watcher:taiga]
 working_dir = /usr/local/taiga/taiga-back
