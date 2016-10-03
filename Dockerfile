@@ -27,7 +27,7 @@ RUN \
   cd /usr/local/taiga/taiga-back && \
   git checkout 3.0.0 && \
   pip install -r requirements.txt && \
-  pip install -Iv taiga-contrib-slack==2.0 && \
+  pip install -Iv taiga-contrib-slack==3.0 && \
   touch /usr/local/taiga/taiga-back/settings/dockerenv.py && \
   touch /usr/local/taiga/circus.ini && \
   chown -R taiga:taiga /usr/local/taiga
