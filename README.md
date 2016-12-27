@@ -65,17 +65,17 @@ taigafront:
 * ``TEMPLATE_DEBUG`` defaults to ``False``
 * ``PUBLIC_REGISTER_ENABLED`` defaults to ``True``
 
-URLs for static files and media files from taiga-back:
-
-* ``MEDIA_URL`` defaults to ``"http://$HOSTNAME/media/"``
-* ``STATIC_URL`` defaults to ``"http://$HOSTNAME/static/"``
-
 Domain configuration:
 
 * ``API_SCHEME`` defaults to ``"http"``. Use ``https`` if ``kalumkalac/taiga-front-dist`` is used and SSL enabled.
 * ``API_DOMAIN`` defaults to ``"$HOSTNAME"``
 * ``FRONT_SCHEME`` defaults to ``"http"``. Use ``https`` if ``kalumkalac/taiga-front-dist`` is used and SSL enabled.
 * ``FRONT_DOMAIN`` defaults to ``"$HOSTNAME"``
+
+URLs for static files and media files from taiga-back:
+
+* ``MEDIA_URL`` defaults to ``"$FRONT_SCHEME://$HOSTNAME/media/"``
+* ``STATIC_URL`` defaults to ``"$FRONT_SCHEME://$HOSTNAME/static/"``
 
 Email configuration:
 
