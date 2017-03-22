@@ -25,9 +25,9 @@ RUN \
   git clone https://github.com/taigaio/taiga-back.git /usr/local/taiga/taiga-back && \
   mkdir /usr/local/taiga/media /usr/local/taiga/static /usr/local/taiga/logs && \
   cd /usr/local/taiga/taiga-back && \
-  git checkout 3.0.0 && \
+  git checkout 3.1.0 && \
   pip install -r requirements.txt && \
-  pip install -Iv taiga-contrib-slack==3.0 && \
+  pip install -Iv taiga-contrib-slack==3.1 && \
   touch /usr/local/taiga/taiga-back/settings/dockerenv.py && \
   touch /usr/local/taiga/circus.ini && \
   chown -R taiga:taiga /usr/local/taiga
